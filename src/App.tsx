@@ -10,19 +10,25 @@ import { IMegaStore } from './stores/megaStore';
 class App extends Component<{
   megaStore?: IMegaStore;
 }> {
+  clearStorage = () => {
+    localStorage.removeItem('elements');
+    this.props.megaStore!.elements = [];
+  }
   render() {
-    const { elements } = this.props.megaStore!;
     return (
       <div className="App page-main container-fluid">
         <div className="elements-list">
           <Element title="Слайдер 1" dataComponent="Sliders" dataName="Slider1" />
-          <Element title="Контент 1" dataComponent="Contents" dataName="Content1" />
+          <Element title="Блок с товарами" dataComponent="Contents" dataName="Content1" />
           <Element title="Форма 1" dataComponent="Contents" dataName="Form1" />
           <Element title="Шапка 1" dataComponent="Headers" dataName="Header1" />
           <Element title="Шапка 2" dataComponent="Headers" dataName="Header2" />
           <Element title="Подвал 1" dataComponent="Footers" dataName="Footer1" />
           <Element title="Подвал 2" dataComponent="Footers" dataName="Footer2" />
-          <Element title="Карта 1" dataComponent="Contents" dataName="Map1" />        
+          <Element title="Карта 1" dataComponent="Contents" dataName="Map1" />
+          
+          <button className="btn btn-danger" onClick={()=>this.clearStorage()}>Сбросить</button>
+          
         </div>
         <div className="constructor-area">
           <ConstructorArea />
