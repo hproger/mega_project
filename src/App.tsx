@@ -1,12 +1,8 @@
 import React, { Component, Props } from 'react';
 import './App.css';
-import ConstructorArea from './application/constructorArea';
+import ConstructorArea from './components/constructorArea';
 import Element from './application/elements';
-import Header1 from './components/Headers/Header1';
-import Footer1 from './components/Footers/Footer1';
-import Content1 from './components/Contents/Content1';
-import Form1 from './components/Contents/Form1';
-import Slider1 from './components/Sliders/Slider1';
+
 
 class App extends Component {
   render() {
@@ -18,13 +14,7 @@ class App extends Component {
           <Element title="Форма 1" dataComponent="Contents" dataName="Form1" />
         </div>
         <div className="constructor-area">
-          <ConstructorArea>
-            <Header1 />
-            <Content1 />
-            <Form1 /> 
-            <Slider1 />
-            <Footer1 />
-          </ConstructorArea>
+          <ConstructorArea />
         </div>
       </div>
     );

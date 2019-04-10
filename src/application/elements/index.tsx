@@ -6,6 +6,10 @@ const elementSource = {
   beginDrag(props:any) {
     return {...props}
   },
+  endDrag(props: any,monitor: any,component: any) {
+    console.log(component);
+    return {...component.props}
+  }
 }
 
 function collect(connect: any, monitor: any) {

@@ -13,6 +13,8 @@ body {
 .constructor-area {
   padding-left: 230px;
   max-width: 100%;
+  width: 100vw;
+  height: 100vh;
 }
 .elements-list {
   display: flex;

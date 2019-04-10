@@ -2,7 +2,7 @@ import {observable} from 'mobx';
 
 export interface IMegaStore {
     products: {name: string}[];
-    elements: {}[];
+    elements: {title: string, dataName:string, dataComponent: string}[];
 }
 
 export class MegaStore implements IMegaStore {
