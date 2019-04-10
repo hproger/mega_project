@@ -33,12 +33,10 @@ class Element extends React.Component<IElementsProps, any> {
   render() {
     const connectDragSource = this.props.connectDragSource!;
     let isDragging = this.props.isDragging!;
-    const {title, dataComponent, dataName} = this.props;
+    const { title } = this.props;
     return connectDragSource(
         <div 
           className="element-list"
-          data-component={dataComponent}
-          data-name={dataName}
           style={{
             opacity: isDragging ? 0.5 : 1,
             cursor: 'move',

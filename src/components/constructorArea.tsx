@@ -5,12 +5,6 @@ import { ItemTypes } from '../Constants';
 import {observer, inject} from 'mobx-react';
 import { IMegaStore } from '../stores/megaStore';
 
-import Header1 from './Headers/Header1';
-import Footer1 from './Footers/Footer1';
-import Content1 from './Contents/Content1';
-import Form1 from './Contents/Form1';
-import Slider1 from './Sliders/Slider1';
-
 interface IConstructorAreaProps {
     connectDropTarget?(elem:any): any;
     newItem?: {title: string, dataName:string, dataComponent: string}
@@ -23,6 +17,7 @@ const squareTarget = {
       const newItem = monitor.getItem();
       let {elements} = props.megaStore!;
       elements.push(newItem);
+      localStorage.setItem('elements',JSON.stringify(elements));
       return newItem;
     },
 }
@@ -37,30 +32,21 @@ function collect(connect: any, monitor: any) {
 @DropTarget(ItemTypes.ELEMENT, squareTarget, collect)
 @observer
 class ConstructorArea extends React.Component<IConstructorAreaProps, any> {
+
   render() {
     const connectDropTarget = this.props.connectDropTarget!
-    const {elements} = this.props.megaStore!;
+    let {elements} = this.props.megaStore!;
+    if (elements.length === 0 && localStorage.getItem('elements')) {
+      elements = JSON.parse(localStorage.getItem('elements')!);
+    }
     return connectDropTarget(
-      <div>
+      <div className="ctr-area-inner">
         
         {elements.length > 0 &&
           elements.map((item,i)=>{
           const OtherComponent = React.lazy(() => import('./'+item.dataComponent+'/'+item.dataName));
-          return <Suspense fallback={<div>Loading...</div>}><OtherComponent /></Suspense>;
-          /*import('./'+item.dataComponent+'/'+item.dataName)
-          .then((resp) => {
-            
-            return <resp.default.name />;
-          })
-          .catch(err => {
-            console.log('err',err);
-          });*/
+          return <Suspense key={i} fallback={<div>Loading...</div>}><OtherComponent /></Suspense>;
         })}
-        <Header1 />
-        <Content1 />
-        <Form1 /> 
-        <Slider1 />
-        <Footer1 />
         
       </div>
     )
