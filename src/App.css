@@ -1,7 +1,13 @@
+* {
+  outline: none;
+}
 body {
   background: oldlace;
 }
 
+input,textarea {
+  resize: none;
+}
 .carousel-inner>.item>a>img, .carousel-inner>.item>img {
   margin: 0 auto;
 }
@@ -39,4 +45,63 @@ body {
   color: white;
   border-radius: 4px;
   margin-bottom: 5px;
+}
+
+/* Editor wrapper */
+.editor-wrapper {
+  box-shadow: inset 0 0 0 0 transparent;
+  position: relative;
+  transition: all .3s;
+}
+.editor-wrapper:hover {
+  box-shadow: inset 0 0 0 3px rgba(0,0,0,.7);
+  transition: all .3s;
+}
+.panel-editor {
+  display: none;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+.editor-wrapper:hover .panel-editor{
+  display: flex;
+}
+.move-btns,
+.right-panel-btns {
+  display: flex;
+}
+.panel-btn {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: rgba(0,0,0,.7);
+  transition: all .3s;
+  color: #fff;
+}
+.panel-btn:hover {
+  background-color: rgba(0,0,0,.4);
+  transition: all .3s;
+}
+
+.editor-wrapper textarea {
+  height: 250px;
+}
+.tab-pane {
+  padding: 10px 0;
+}
+.modal-body {
+  padding-left: 0;
+  padding-right: 0;
+}
+.modal-body .tab-content {
+  padding-left: 15px;
+  padding-right: 15px;
 }
